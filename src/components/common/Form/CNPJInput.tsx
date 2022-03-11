@@ -5,7 +5,7 @@ import {Controller, IControllerProps} from './Controller';
 import {TextInputMaskProps} from 'react-native-masked-text';
 import {useInputMaskInterceptor} from '@hooks/useInputMaskInterceptor';
 
-export const DocumentInput = <
+export const CNPJInput = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
@@ -13,7 +13,7 @@ export const DocumentInput = <
   control,
   rules = {
     required: {value: true, message: 'Preencha seu CNPJ'},
-    minLength: {value: 18, message: 'O CNPJ precisa ter 11 dígitos'},
+    minLength: {value: 14, message: 'O CNPJ precisa ter 18 dígitos'},
   },
   ...props
 }: Omit<TextInputMaskProps, 'type'> &
