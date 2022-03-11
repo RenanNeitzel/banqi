@@ -2,8 +2,16 @@
  * @format
  */
 
+import React from 'react';
+import { NativeBaseProvider } from 'native-base';
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+export const RootComponent = () => (
+	<NativeBaseProvider>
+		<App />
+	</NativeBaseProvider>
+)
+
+AppRegistry.registerComponent(appName, () => RootComponent);
