@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import React from 'react';
 import { NativeBaseProvider } from 'native-base';
 import {AppRegistry} from 'react-native';
