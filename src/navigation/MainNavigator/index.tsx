@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 import {TabBottomNavigation} from '@components/TabBottomNavigator';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {CompanyNavigator} from './navigators/CompanyNavigator';
 import {Home} from '@domain/Home';
 import {Profile} from '@domain/Profile';
 import {VectorIcon} from '@components/common/Icon';
+import {CompanyList} from '@domain/Company';
 
 export type MainNavigatorParamList = {
   Home: undefined;
-  Company: undefined;
+  CompanyList: undefined;
   Profile: undefined;
 };
 
@@ -55,8 +55,8 @@ export const MainNavigator = () => {
           }}
         />
         <Tab.Screen
-          name="Company"
-          component={CompanyNavigator}
+          name="CompanyList"
+          component={CompanyList}
           options={{
             tabBarLabel: 'Lista de Empresas',
             tabBarIcon: ({color, size}) => (
