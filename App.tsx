@@ -19,6 +19,9 @@ import {
   View,
 } from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import {
   Colors,
   DebugInstructions,
@@ -55,7 +58,7 @@ const Section: React.FC<{
   );
 };
 
-const App = () => {
+const AppScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -90,6 +93,22 @@ const App = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+export type AppParamList = {
+  App: undefined;
+};
+
+const Stack = createNativeStackNavigator<AppParamList>();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="App" component={AppScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
