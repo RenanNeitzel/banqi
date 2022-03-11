@@ -64,8 +64,6 @@ export const TabBottomNavigation = ({
               {options.tabBarIcon && (
                 <Center
                   overflow="hidden"
-                  paddingLeft={2}
-                  paddingTop={2}
                   backgroundColor={
                     isFocused ? options.tabBarActiveBackgroundColor : undefined
                   }>

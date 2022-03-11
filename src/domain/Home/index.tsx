@@ -1,10 +1,17 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Center, Text} from 'native-base';
+
+import {Single} from '@components/templates/Single';
 
 export const Home = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>HOME</Text>
-    </View>
+    <Single
+      headerProps={{
+        title: 'Você está na HOME',
+      }}>
+      <Center>
+        <Text>HOME</Text>
+      </Center>
+    </Single>
   );
 };

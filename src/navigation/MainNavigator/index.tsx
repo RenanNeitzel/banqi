@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon, useColorModeValue, useTheme} from 'native-base';
+import {useColorModeValue, useTheme} from 'native-base';
 import styled from 'styled-components';
 
 import {TabBottomNavigation} from '@components/TabBottomNavigator';
@@ -8,6 +8,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {CompanyNavigator} from './navigators/CompanyNavigator';
 import {Home} from '@domain/Home';
 import {Profile} from '@domain/Profile';
+import {VectorIcon} from '@components/common/Icon';
 
 export type MainNavigatorParamList = {
   Home: undefined;
@@ -47,7 +48,9 @@ export const MainNavigator = () => {
             unmountOnBlur: false,
             tabBarLabel: 'Início',
             tabBarIcon: ({color, size}) => {
-              return <Icon name="add" color={color} size={size} />;
+              return (
+                <VectorIcon name="home-outline" color={color} size={size} />
+              );
             },
           }}
         />
@@ -57,7 +60,11 @@ export const MainNavigator = () => {
           options={{
             tabBarLabel: 'Lista de Empresas',
             tabBarIcon: ({color, size}) => (
-              <Icon name="check" color={color} size={size} />
+              <VectorIcon
+                name="clipboard-list-outline"
+                color={color}
+                size={size}
+              />
             ),
           }}
         />
@@ -67,7 +74,11 @@ export const MainNavigator = () => {
           options={{
             tabBarLabel: 'Perfil',
             tabBarIcon: ({color, size}) => (
-              <Icon name="info" color={color} size={size} />
+              <VectorIcon
+                name="information-outline"
+                color={color}
+                size={size}
+              />
             ),
           }}
         />
