@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 
-import {Button, Text} from 'native-base';
+import {Button, Text, useToast} from 'native-base';
 import {useForm} from 'react-hook-form';
 import {Single} from '@components/templates/Single';
 import {
@@ -11,6 +11,10 @@ import {
   SelectInput,
 } from '@components/common/Form';
 import {states} from './states';
+import {usePostCompany} from '@hooks/companies/queries';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppNavigatorParamList} from '@navigation/AppNavigator';
 
 type CompanyFormValues = {
   name: string;
@@ -28,6 +32,11 @@ type CompanyFormValues = {
   };
 };
 
+type NewCompanyProps = NativeStackNavigationProp<
+  AppNavigatorParamList,
+  'NewCompany'
+>;
+
 export const NewCompany = () => {
   const {
     control,
@@ -36,10 +45,27 @@ export const NewCompany = () => {
   } = useForm<CompanyFormValues>({
     mode: 'onChange',
   });
+  const createCompany = usePostCompany();
+  const navigation = useNavigation<NewCompanyProps>();
+  const toast = useToast();
 
-  const onSubmit = useCallback(async (data: CompanyFormValues) => {
-    console.log('ONSUBMIT', data);
-  }, []);
+  const onSubmit = useCallback(
+    async (formValues: CompanyFormValues) => {
+      try {
+        await createCompany?.mutateAsync(formValues);
+
+        return navigation.replace('CompanyDetails', {cnpj: formValues.cnpj});
+      } catch (error: any) {
+        return toast.show({
+          title: 'Erro',
+          status: 'error',
+          variant: 'solid',
+          description: error.message,
+        });
+      }
+    },
+    [createCompany, toast, navigation],
+  );
 
   return (
     <Single
@@ -152,6 +178,7 @@ export const NewCompany = () => {
             name="address.complement"
             label="Complemento (Opcional)"
             placeholder="Complemento (Opcional)"
+            defaultValue=""
           />
           <Button
             mt={5}

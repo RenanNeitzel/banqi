@@ -13,7 +13,7 @@ export const CNPJInput = <
   control,
   rules = {
     required: {value: true, message: 'Preencha seu CNPJ'},
-    minLength: {value: 14, message: 'O CNPJ precisa ter 18 dígitos'},
+    minLength: {value: 14, message: 'O CNPJ precisa ter 14 dígitos'},
   },
   ...props
 }: Omit<TextInputMaskProps, 'type'> &
@@ -32,7 +32,7 @@ export const CNPJInput = <
 
   return (
     <Controller {...props} fieldState={fieldState}>
-      <Input keyboardType="numeric" {...props} {...masked} />
+      <Input keyboardType="numeric" maxLength={18} {...props} {...masked} />
     </Controller>
   );
 };

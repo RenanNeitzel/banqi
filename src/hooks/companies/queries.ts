@@ -1,14 +1,20 @@
-import {useQuery} from 'react-query';
+import {useQuery, useMutation} from 'react-query';
 
-import {Company, getCompany, getCompanies} from '@services/companies';
+import {queryClient} from '@config/react-query';
+import {
+  Company,
+  getCompany,
+  getCompanies,
+  postCompany,
+} from '@services/companies';
 
-export const companiesMethodKeys = {
+export const companiesKeys = {
   all: ['companies'] as const,
   cnpj: (cnpj: string) => ['companies', cnpj],
 };
 
 export const useGetCompanies = () => {
-  return useQuery(companiesMethodKeys.all, getCompanies, {
+  return useQuery(companiesKeys.all, getCompanies, {
     initialData: [],
     notifyOnChangeProps: 'tracked',
   });
@@ -16,11 +22,19 @@ export const useGetCompanies = () => {
 
 export const useGetCompany = (cnpj: Company['cnpj']) => {
   return useQuery(
-    companiesMethodKeys.cnpj(cnpj),
+    companiesKeys.cnpj(cnpj),
     async () => await getCompany(cnpj),
     {
       initialData: undefined,
       notifyOnChangeProps: 'tracked',
     },
   );
+};
+
+export const usePostCompany = () => {
+  return useMutation(postCompany, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(companiesKeys.all);
+    },
+  });
 };

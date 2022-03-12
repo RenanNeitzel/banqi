@@ -4,7 +4,7 @@ export interface Company {
   name: string;
   cnpj: string;
   description: string;
-  logo: URL;
+  logo: string;
   createdAt?: Date;
   address: {
     zip: string;
@@ -30,6 +30,6 @@ export const getCompany = async (
 };
 
 export const postCompany = async (params: Company) => {
-  const {data} = await axiosInstance.post('/companies', {params});
+  const {data} = await axiosInstance.post('/companies/?format=api', params);
   return data;
 };
