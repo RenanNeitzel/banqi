@@ -1,11 +1,11 @@
-import {useGetCompanies} from '@hooks/companies/useGetCompanies';
+import {useGetCompany} from '@hooks/companies/queries';
 import * as React from 'react';
 import {Text, View} from 'react-native';
 
 export const CompanyList = () => {
-  const {data: companies} = useGetCompanies();
+  const {data: company} = useGetCompany('112121');
 
-  console.log('BUSCOU EMPRESAS', companies);
+  console.log('DETALHE DA EMPRESA', company);
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

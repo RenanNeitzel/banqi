@@ -21,3 +21,15 @@ export const getCompanies = async (): Promise<Company[]> => {
   const {data} = await axiosInstance.get('/companies');
   return data;
 };
+
+export const getCompany = async (
+  cnpj: Company['cnpj'],
+): Promise<Company | undefined> => {
+  const data = await getCompanies();
+  return data.find(company => company.cnpj === cnpj);
+};
+
+export const postCompany = async (params: Company) => {
+  const {data} = await axiosInstance.post('/companies', {params});
+  return data;
+};
