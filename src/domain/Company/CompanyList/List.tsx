@@ -1,8 +1,9 @@
 import React from 'react';
 import {ListRenderItem} from 'react-native';
-import {FlatList, HStack, Pressable, Spinner, Text, VStack} from 'native-base';
+import {FlatList, HStack, Pressable, Text, VStack} from 'native-base';
 import {Company} from '@services/companies';
 import {VectorIcon} from '@components/common/Icon';
+import {Loader} from '@components/common/Loader';
 
 type ListProps = {
   companies?: Company[];
@@ -34,12 +35,7 @@ export const List = ({companies, loading, onSelect}: ListProps) => {
   return (
     <VStack flexGrow={1}>
       {loading ? (
-        <HStack backgroundColor="amber.400" justifyContent="center">
-          <VStack>
-            <Spinner />
-            <Text>Estamos buscando as empresas</Text>
-          </VStack>
-        </HStack>
+        <Loader description="Estamos buscando as empresas" />
       ) : (
         <FlatList data={companies} renderItem={Item} />
       )}
