@@ -7,7 +7,7 @@ import {NewCompany, CompanyDetails, CompanyEdit} from '@domain/Company';
 export type AppNavigatorParamList = {
   Main: undefined;
   NewCompany: undefined;
-  CompanyDetails: undefined;
+  CompanyDetails: {cnpj: string};
   CompanyEdit: undefined;
 };
 

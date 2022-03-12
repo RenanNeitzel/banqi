@@ -5,6 +5,9 @@ import styled from 'styled-components/native';
 import {List} from './List';
 import {useGetCompanies} from '@hooks/companies/queries';
 import {Company} from '@services/companies';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppNavigatorParamList} from '@navigation/AppNavigator';
 
 const StyledSafeAreaView = styled(SafeAreaView)`
   flex: 1;
@@ -12,14 +15,21 @@ const StyledSafeAreaView = styled(SafeAreaView)`
   padding: 0;
 `;
 
+type CompanyListProps = NativeStackNavigationProp<
+  AppNavigatorParamList,
+  'CompanyDetails'
+>;
+
 export const CompanyList = () => {
   const {data: companies, isFetching} = useGetCompanies();
+  const navitagion = useNavigation<CompanyListProps>();
 
-  console.log('CARREGANDO', isFetching);
-
-  const onSelect = useCallback((value: Company['cnpj']) => {
-    console.log('EMPRESA SELECIONADA', value);
-  }, []);
+  const onSelect = useCallback(
+    (cnpj: Company['cnpj']) => {
+      return navitagion.navigate('CompanyDetails', {cnpj});
+    },
+    [navitagion],
+  );
 
   return (
     <View flex={1}>
