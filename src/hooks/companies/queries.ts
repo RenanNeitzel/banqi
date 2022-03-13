@@ -6,6 +6,7 @@ import {
   getCompany,
   getCompanies,
   postCompany,
+  editCompany,
 } from '@services/companies';
 
 export const companiesKeys = {
@@ -33,6 +34,14 @@ export const useGetCompany = (cnpj: Company['cnpj']) => {
 
 export const usePostCompany = () => {
   return useMutation(postCompany, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(companiesKeys.all);
+    },
+  });
+};
+
+export const useEditCompany = () => {
+  return useMutation(editCompany, {
     onSuccess: () => {
       queryClient.invalidateQueries(companiesKeys.all);
     },

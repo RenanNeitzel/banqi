@@ -33,3 +33,11 @@ export const postCompany = async (params: Company) => {
   const {data} = await axiosInstance.post('/companies/?format=api', params);
   return data;
 };
+
+export const editCompany = async (params: Company) => {
+  const data = await axiosInstance.put(
+    `/companies/${params.cnpj}/?format=api`,
+    params,
+  );
+  return data;
+};

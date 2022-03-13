@@ -3,12 +3,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {MainNavigator} from '@navigation/MainNavigator';
 import {NewCompany, CompanyDetails, CompanyEdit} from '@domain/Company';
+import {Company} from '@services/companies';
 
 export type AppNavigatorParamList = {
   Main: undefined;
   NewCompany: undefined;
   CompanyDetails: {cnpj: string};
-  CompanyEdit: undefined;
+  CompanyEdit: {company?: Company};
 };
 
 const Stack = createNativeStackNavigator<AppNavigatorParamList>();
