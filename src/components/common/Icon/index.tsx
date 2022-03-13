@@ -4,6 +4,6 @@ import {IconProps} from 'react-native-vector-icons/Icon';
 
 Icon.loadFont();
 
-export const VectorIcon = ({size = 24, name, color}: IconProps) => (
+export const VectorIcon = ({size = 24, name, color = 'black'}: IconProps) => (
   <Icon size={size} name={name} color={color} />
 );
