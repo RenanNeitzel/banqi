@@ -13,6 +13,7 @@ import {
   Divider,
   View,
   Button,
+  Heading,
 } from 'native-base';
 import * as React from 'react';
 
@@ -41,12 +42,14 @@ export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
     </HStack>
   );
 
+  console.log(company);
+
   return (
     <Single headerProps={{title: 'Detalhes da empresa'}}>
       <VStack padding={3}>
         {isFetching ? (
           <Loader description="Estamos buscando as informações da empresa" />
-        ) : (
+        ) : company ? (
           <View>
             <Box borderWidth={1} borderRadius="md" padding={3}>
               <Center>
@@ -92,6 +95,23 @@ export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
               Editar empresa
             </Button>
           </View>
+        ) : (
+          <Box
+            borderRadius="md"
+            borderWidth={1}
+            padding={2}
+            borderColor="red.500">
+            <VStack>
+              <HStack justifyContent="center">
+                <Heading>Empresa não encontrada</Heading>
+              </HStack>
+              <HStack justifyContent="center">
+                <Text marginTop={3}>
+                  Confira o CNPJ informado e tente novamente
+                </Text>
+              </HStack>
+            </VStack>
+          </Box>
         )}
       </VStack>
     </Single>
