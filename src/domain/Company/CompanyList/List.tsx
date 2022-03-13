@@ -37,7 +37,7 @@ export const List = ({companies, loading, onSelect}: ListProps) => {
       {loading ? (
         <Loader description="Estamos buscando as empresas" />
       ) : (
-        <FlatList data={companies} renderItem={Item} />
+        <FlatList data={companies} renderItem={Item} marginBottom="104" />
       )}
     </VStack>
   );
