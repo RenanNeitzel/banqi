@@ -4,6 +4,7 @@ import {FlatList, HStack, Pressable, Text, VStack} from 'native-base';
 import {Company} from '@services/companies';
 import {VectorIcon} from '@components/common/Icon';
 import {Loader} from '@components/common/Loader';
+import {cnpjFormat} from '@utils/cnpjFormat';
 
 type ListProps = {
   companies?: Company[];
@@ -25,7 +26,7 @@ export const List = ({companies, loading, onSelect}: ListProps) => {
           <Text fontWeight="bold" fontSize="md">
             {item.name}
           </Text>
-          <Text>{item.cnpj}</Text>
+          <Text>{cnpjFormat(item.cnpj)}</Text>
         </VStack>
         <VectorIcon name="chevron-right" color="black" />
       </HStack>

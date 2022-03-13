@@ -4,6 +4,7 @@ import {useGetCompany} from '@hooks/companies/queries';
 import {AppNavigatorParamList} from '@navigation/AppNavigator';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { cnpjFormat } from '@utils/cnpjFormat';
 import {
   Box,
   Center,
@@ -42,8 +43,6 @@ export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
     </HStack>
   );
 
-  console.log(company);
-
   return (
     <Single headerProps={{title: 'Detalhes da empresa'}}>
       <VStack padding={3}>
@@ -55,7 +54,7 @@ export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
               <Center>
                 <VStack width="full">
                   <Detail label="Nome da empresa:" value={company?.name} />
-                  <Detail label="CNPJ:" value={company?.cnpj} />
+                  <Detail label="CNPJ:" value={cnpjFormat(company?.cnpj)} />
                   <Detail label="Sobre:" value={company?.description} />
                   <Detail label="Logo:" value={company?.logo} />
                   <Detail label="Criada em:" value={company?.createdAt} />
