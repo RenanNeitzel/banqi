@@ -25,8 +25,8 @@ export const CompanyList = () => {
   const navitagion = useNavigation<CompanyListProps>();
 
   const onSelect = useCallback(
-    (cnpj: Company['cnpj']) => {
-      return navitagion.navigate('CompanyDetails', {cnpj});
+    (company: Company) => {
+      return navitagion.navigate('CompanyDetails', {company});
     },
     [navitagion],
   );

@@ -9,12 +9,12 @@ import {cnpjFormat} from '@utils/cnpjFormat';
 type ListProps = {
   companies?: Company[];
   loading: boolean;
-  onSelect: (cnpj: Company['cnpj']) => void;
+  onSelect: (company: Company) => void;
 };
 
 export const List = ({companies, loading, onSelect}: ListProps) => {
   const Item: ListRenderItem<Company> = ({item}) => (
-    <Pressable onPress={() => onSelect(item.cnpj)}>
+    <Pressable onPress={() => onSelect(item)}>
       <HStack
         justifyContent="space-between"
         alignItems="center"
