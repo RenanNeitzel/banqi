@@ -1,6 +1,12 @@
 # BanQi
 PJ Trybe Coding Challenge
 
+![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
+
+
 This project aims to showcase my skills as a Front End developer for the React Native Front End developer opportunity at Banqi.
 The App's main objective is to give the customer the possibility to register a company, see its details, search for a list of all registered companies and edit a specific company..
 
@@ -69,21 +75,11 @@ Make sure you have all pre-requisites in minimum version or newer.
 
 ### - Início
 
-On this screen, you have the options to:
-
-- Search company by CNPJ
+On this screen, you have the option to:
 
 - Register new company
 
-
-<img width="516" alt="Screen Shot 2022-03-13 at 21 24 50" src="https://user-images.githubusercontent.com/41584304/158086181-b34d557b-e620-4b4d-988d-343ea5b1f20d.png">  <img width="449" alt="Screen Shot 2022-03-13 at 21 25 06" src="https://user-images.githubusercontent.com/41584304/158086202-0fd46ee0-3f4f-40b5-99b1-b3ffa10b12a8.png">
-
-
-On this screen, you have the options to:
-
-- Search company by CNPJ
-
-- Register new company
+<img width="516" alt="Screen Shot 2022-03-14 at 16 20 25" src="https://user-images.githubusercontent.com/41584304/158245419-bc847e72-9ad1-4958-9872-8c21e7d1e5f9.png">  <img width="449" alt="Screen Shot 2022-03-14 at 16 20 50" src="https://user-images.githubusercontent.com/41584304/158245429-b8e22308-bd00-4b9e-9741-f87138818832.png">
 
 
 
@@ -133,4 +129,3 @@ Any question or improvements requests, you can open an issue or contact me direc
 
 
 Tks!
-
