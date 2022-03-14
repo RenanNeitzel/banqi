@@ -1,9 +1,10 @@
-import {Button, Text} from 'native-base';
-import React from 'react';
+import {Button, Text, useToast} from 'native-base';
+import React, {useCallback, useState} from 'react';
 import {SubmitErrorHandler, SubmitHandler, useForm} from 'react-hook-form';
 import {useFormValuesEffect} from '@hooks/useFormValuesEffect';
 import {Form, TextInput, CNPJInput, ZipcodeInput, SelectInput} from '../Form';
 import {states} from './states';
+import {getAddressByZip} from '@services/address';
 
 export type CompanyFormValues = {
   name: string;
@@ -31,6 +32,8 @@ export const CompanyForm = React.memo(
     onSubmit: SubmitHandler<CompanyFormValues>;
     onError?: SubmitErrorHandler<CompanyFormValues>;
   }) => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const {
       control,
       handleSubmit,
@@ -40,6 +43,39 @@ export const CompanyForm = React.memo(
       defaultValues,
       mode: 'onChange',
     });
+    const toast = useToast();
+
+    const onZipChange = useCallback(
+      async zip => {
+        if (!zip || zip.length < 8) {
+          return;
+        }
+
+        try {
+          setIsLoading(true);
+
+          const response = await getAddressByZip(zip);
+          const address = {
+            zip: response.cep,
+            state: response.uf,
+            city: response.localidade,
+            neighborhood: response.bairro,
+            street: response.logradouro,
+            number: '',
+            complement: '',
+          };
+          setValue('address', address);
+          setIsLoading(false);
+        } catch (error) {
+          toast.show({
+            title: 'CEP não encontrado',
+            status: 'error',
+            description: 'Verifique o CEP e tente novamente',
+          });
+        }
+      },
+      [setValue, toast],
+    );
 
     useFormValuesEffect<CompanyFormValues>(setValue, defaultValues);
 
@@ -89,6 +125,7 @@ export const CompanyForm = React.memo(
             name="address.zip"
             label="CEP"
             placeholder="CEP da empresa"
+            onChangeText={onZipChange}
           />
           <SelectInput<CompanyFormValues>
             control={control}
@@ -103,7 +140,8 @@ export const CompanyForm = React.memo(
             _selectedItem={{
               bg: 'gray.200',
             }}
-            color="black">
+            color="black"
+            isDisabled={isLoading}>
             {states.map(state => (
               <SelectInput.Item key={state} label={state} value={state} />
             ))}
@@ -116,6 +154,7 @@ export const CompanyForm = React.memo(
             rules={{
               required: 'Informe a cidade onde fica a empresa',
             }}
+            isDisabled={isLoading}
           />
           <TextInput<CompanyFormValues>
             control={control}
@@ -125,6 +164,7 @@ export const CompanyForm = React.memo(
             rules={{
               required: 'Informe o bairro onde fica a empresa',
             }}
+            isDisabled={isLoading}
           />
           <TextInput<CompanyFormValues>
             control={control}
@@ -134,6 +174,7 @@ export const CompanyForm = React.memo(
             rules={{
               required: 'Informe a Rua/Avenida onde fica a empresa',
             }}
+            isDisabled={isLoading}
           />
           <TextInput<CompanyFormValues>
             control={control}
@@ -144,6 +185,7 @@ export const CompanyForm = React.memo(
               required: 'Informe o número de endereço da empresa',
             }}
             keyboardType="numeric"
+            isDisabled={isLoading}
           />
           <TextInput<CompanyFormValues>
             control={control}
@@ -151,6 +193,7 @@ export const CompanyForm = React.memo(
             label="Complemento (Opcional)"
             placeholder="Complemento (Opcional)"
             defaultValue=""
+            isDisabled={isLoading}
           />
         </Form.Section>
         <Form.Section mt={2}>

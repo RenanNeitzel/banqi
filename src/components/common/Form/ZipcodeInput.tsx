@@ -29,6 +29,7 @@ export const ZipcodeInput = <
     initialValue: field.value,
     type: 'zip-code',
     field,
+    listener: props.onChangeText,
   });
 
   return (
