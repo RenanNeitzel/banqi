@@ -8,6 +8,7 @@ export const useSetFormValues = <
 ) => {
   const setInputValues = useCallback(
     (inputValues: FieldValues) => {
+      console.log('INPUT VALUES', inputValues);
       const keyValues = Object.entries(inputValues);
       keyValues.forEach(([key, value]) => {
         setValue(key as any, value);
