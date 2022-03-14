@@ -11,7 +11,7 @@ import {
 
 export const companiesKeys = {
   all: ['companies'] as const,
-  id: (id: string) => ['companies', id],
+  id: (id?: string) => ['companies', id],
 };
 
 export const useGetCompanies = () => {

@@ -7,6 +7,7 @@ import {AppNavigatorParamList} from '@navigation/AppNavigator';
 import {Single} from '@components/templates/Single';
 import {CompanyForm, CompanyFormValues} from '@components/common/CompanyForm';
 import {useEditCompany} from '@hooks/companies/queries';
+import {resolveNetworkError} from '@utils/resolveNetworkError';
 
 interface CompanyDetailsProps {
   navigation: NativeStackNavigationProp<AppNavigatorParamList, 'CompanyEdit'>;
@@ -15,13 +16,13 @@ interface CompanyDetailsProps {
 
 export const CompanyEdit = ({navigation, route}: CompanyDetailsProps) => {
   const toast = useToast();
-  const {company} = route.params;
+  const {company: companyValues} = route.params;
   const editCompany = useEditCompany();
 
   const onSubmit = useCallback(
     async (formValues: CompanyFormValues) => {
       try {
-        await editCompany.mutateAsync(formValues);
+        const company = await editCompany.mutateAsync(formValues);
 
         toast.show({
           title: 'Editado',
@@ -30,13 +31,13 @@ export const CompanyEdit = ({navigation, route}: CompanyDetailsProps) => {
           description: 'Empresa editada com sucesso!',
         });
 
-        return navigation.replace('CompanyDetails', {cnpj: formValues.cnpj});
+        return navigation.navigate('CompanyDetails', {company});
       } catch (error: any) {
         return toast.show({
           title: 'Erro',
           status: 'error',
           variant: 'solid',
-          description: error.message,
+          description: resolveNetworkError(error),
         });
       }
     },
@@ -49,7 +50,7 @@ export const CompanyEdit = ({navigation, route}: CompanyDetailsProps) => {
         title: 'Editar empresa',
         subtitle: 'Edite os campos necessários para editar sua empresa',
       }}>
-      <CompanyForm defaultValues={company} onSubmit={onSubmit} />
+      <CompanyForm defaultValues={companyValues} onSubmit={onSubmit} />
     </Single>
   );
 };
