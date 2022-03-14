@@ -11,7 +11,7 @@ import {
 
 export const companiesKeys = {
   all: ['companies'] as const,
-  cnpj: (cnpj: string) => ['companies', cnpj],
+  id: (id: string) => ['companies', id],
 };
 
 export const useGetCompanies = () => {
@@ -21,15 +21,11 @@ export const useGetCompanies = () => {
   });
 };
 
-export const useGetCompany = (cnpj: Company['cnpj']) => {
-  return useQuery(
-    companiesKeys.cnpj(cnpj),
-    async () => await getCompany(cnpj),
-    {
-      initialData: undefined,
-      notifyOnChangeProps: 'tracked',
-    },
-  );
+export const useGetCompany = (id: Company['id']) => {
+  return useQuery(companiesKeys.id(id), async () => await getCompany(id), {
+    initialData: undefined,
+    notifyOnChangeProps: 'tracked',
+  });
 };
 
 export const usePostCompany = () => {

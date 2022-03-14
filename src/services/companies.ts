@@ -1,6 +1,7 @@
 import axiosInstance from '@config/axios';
 
 export interface Company {
+  id: string;
   name: string;
   cnpj: string;
   description: string;
@@ -22,11 +23,9 @@ export const getCompanies = async (): Promise<Company[]> => {
   return data;
 };
 
-export const getCompany = async (
-  cnpj: Company['cnpj'],
-): Promise<Company | undefined> => {
-  const data = await getCompanies();
-  return data.find(company => company.cnpj === cnpj);
+export const getCompany = async (id: Company['id']): Promise<Company> => {
+  const {data} = await axiosInstance.get(`/companies/${id}`);
+  return data;
 };
 
 export const postCompany = async (params: Company) => {
