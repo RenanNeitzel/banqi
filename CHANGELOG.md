@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/RenanNeitzel/banqi/compare/v1.0.0...v1.1.0) (2022-03-14)
+
+
+### Features
+
+* **address search:** add endpoint to address search and apply on AddressForm ([2c51b3a](https://github.com/RenanNeitzel/banqi/commit/2c51b3a83020368fb0146136f568de893de2d30d))
+* **resolvenetworkerror:** create resolveNetWorkError and add on response error NewCompany ([6a5030f](https://github.com/RenanNeitzel/banqi/commit/6a5030fb8d4aeef169598de3258b6e145871955f))
+* **search address by zip:** integrate searche address by zip ([4f84538](https://github.com/RenanNeitzel/banqi/commit/4f84538c9384c265adb34aad767029177c473566))
+
+
+### Bug Fixes
+
+* **companies services:** fix format response post company request ([1f613b5](https://github.com/RenanNeitzel/banqi/commit/1f613b5023091994b0b2fdd9eb5eca5c505efd3c))
+* **company edit:** adjust company edit request and CompanyEdit screen ([c56e253](https://github.com/RenanNeitzel/banqi/commit/c56e2534d33dba03320b12224f33c19b11c528f7))
+* **company list:** adjust params passed to route navigation ([7c632fd](https://github.com/RenanNeitzel/banqi/commit/7c632fd7e7cc73b9e82d729be461e84c11c15a77))
+* **get company:** fix getCompany request by id ([2710c45](https://github.com/RenanNeitzel/banqi/commit/2710c45057a04101256ad421fa8bad49cfa583cf))
+* **home:** remove campany search of home screen ([198b7b0](https://github.com/RenanNeitzel/banqi/commit/198b7b098899c00fb9fe387b6f7d58a9a8f17c4c))
+* **home:** remove unused code ([d8c1b8b](https://github.com/RenanNeitzel/banqi/commit/d8c1b8be66d85fcdd1c0699587074aa52eef9042))
+* **new company:** fix params passed to route navigation and params received on CompanyDetails ([b88a5d8](https://github.com/RenanNeitzel/banqi/commit/b88a5d8fff917edf4620de48358ba1b554e4a8e2))
+* **number input:** set keyboard type on number input ([74b58cd](https://github.com/RenanNeitzel/banqi/commit/74b58cde2c2ef2a3120735f10b303a9b96d3857a))
+* **types company:** fix type id of Company types ([cf1acf9](https://github.com/RenanNeitzel/banqi/commit/cf1acf97ff6719da56029042534bccc5a49908d0))
+
 ## 1.0.0 (2022-03-14)
 
 
