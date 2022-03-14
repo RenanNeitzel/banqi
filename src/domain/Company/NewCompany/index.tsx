@@ -21,7 +21,7 @@ export const NewCompany = () => {
   const onSubmit = useCallback(
     async (formValues: CompanyFormValues) => {
       try {
-        await createCompany?.mutateAsync(formValues);
+        const company = await createCompany?.mutateAsync(formValues);
 
         toast.show({
           title: 'Sucesso',
@@ -29,13 +29,13 @@ export const NewCompany = () => {
           variant: 'solid',
           description: 'Empresa cadastrada com sucesso!',
         });
-        return navigation.replace('CompanyDetails', {cnpj: formValues.cnpj});
+        return navigation.replace('CompanyDetails', {company});
       } catch (error: any) {
         return toast.show({
           title: 'Erro',
           status: 'error',
           variant: 'solid',
-          description: error.message,
+          description: error,
         });
       }
     },

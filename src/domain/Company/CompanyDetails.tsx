@@ -1,10 +1,4 @@
-import {Loader} from '@components/common/Loader';
-import {Single} from '@components/templates/Single';
-import {useGetCompany} from '@hooks/companies/queries';
-import {AppNavigatorParamList} from '@navigation/AppNavigator';
-import {RouteProp} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { cnpjFormat } from '@utils/cnpjFormat';
+import * as React from 'react';
 import {
   Box,
   Center,
@@ -14,9 +8,13 @@ import {
   Divider,
   View,
   Button,
-  Heading,
 } from 'native-base';
-import * as React from 'react';
+import {AppNavigatorParamList} from '@navigation/AppNavigator';
+import {RouteProp} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {Single} from '@components/templates/Single';
+import {cnpjFormat} from '@utils/cnpjFormat';
 
 interface CompanyDetailsProps {
   navigation: NativeStackNavigationProp<
@@ -27,8 +25,7 @@ interface CompanyDetailsProps {
 }
 
 export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
-  const {cnpj} = route.params;
-  const {data: company, isFetching} = useGetCompany(cnpj);
+  const {company} = route.params;
 
   const Detail = ({
     label,
@@ -46,72 +43,48 @@ export const CompanyDetails = ({navigation, route}: CompanyDetailsProps) => {
   return (
     <Single headerProps={{title: 'Detalhes da empresa'}}>
       <VStack padding={3}>
-        {isFetching ? (
-          <Loader description="Estamos buscando as informações da empresa" />
-        ) : company ? (
-          <View>
-            <Box borderWidth={1} borderRadius="md" padding={3}>
-              <Center>
-                <VStack width="full">
-                  <Detail label="Nome da empresa:" value={company?.name} />
-                  <Detail label="CNPJ:" value={cnpjFormat(company?.cnpj)} />
-                  <Detail label="Sobre:" value={company?.description} />
-                  <Detail label="Logo:" value={company?.logo} />
-                  <Detail label="Criada em:" value={company?.createdAt} />
+        <View>
+          <Box borderWidth={1} borderRadius="md" padding={3}>
+            <Center>
+              <VStack width="full">
+                <Detail label="Nome da empresa:" value={company?.name} />
+                <Detail label="CNPJ:" value={cnpjFormat(company?.cnpj)} />
+                <Detail label="Sobre:" value={company?.description} />
+                <Detail label="Logo:" value={company?.logo} />
+                <Detail label="Criada em:" value={company?.createdAt} />
 
-                  <Divider my={3} bgColor="black" />
-                  <Text
-                    marginTop={4}
-                    marginBottom={2}
-                    fontWeight="bold"
-                    fontSize="lg">
-                    Endereço
-                  </Text>
-
-                  <Detail label="CEP:" value={company?.address?.zip} />
-                  <Detail
-                    label="Rua/Avenida:"
-                    value={company?.address?.street}
-                  />
-                  <Detail
-                    label="Bairro:"
-                    value={company?.address?.neighborhood}
-                  />
-                  <Detail label="Número:" value={company?.address?.number} />
-                  <Detail
-                    label="Complemento:"
-                    value={company?.address?.complement}
-                  />
-                  <Detail label="Estado:" value={company?.address?.state} />
-                  <Detail label="Cidade:" value={company?.address?.city} />
-                </VStack>
-              </Center>
-            </Box>
-
-            <Button
-              mt={3}
-              onPress={() => navigation.navigate('CompanyEdit', {company})}>
-              Editar empresa
-            </Button>
-          </View>
-        ) : (
-          <Box
-            borderRadius="md"
-            borderWidth={1}
-            padding={2}
-            borderColor="red.500">
-            <VStack>
-              <HStack justifyContent="center">
-                <Heading>Empresa não encontrada</Heading>
-              </HStack>
-              <HStack justifyContent="center">
-                <Text marginTop={3}>
-                  Confira o CNPJ informado e tente novamente
+                <Divider my={3} bgColor="black" />
+                <Text
+                  marginTop={4}
+                  marginBottom={2}
+                  fontWeight="bold"
+                  fontSize="lg">
+                  Endereço
                 </Text>
-              </HStack>
-            </VStack>
+
+                <Detail label="CEP:" value={company?.address?.zip} />
+                <Detail label="Rua/Avenida:" value={company?.address?.street} />
+                <Detail
+                  label="Bairro:"
+                  value={company?.address?.neighborhood}
+                />
+                <Detail label="Número:" value={company?.address?.number} />
+                <Detail
+                  label="Complemento:"
+                  value={company?.address?.complement}
+                />
+                <Detail label="Estado:" value={company?.address?.state} />
+                <Detail label="Cidade:" value={company?.address?.city} />
+              </VStack>
+            </Center>
           </Box>
-        )}
+
+          <Button
+            mt={3}
+            onPress={() => navigation.navigate('CompanyEdit', {company})}>
+            Editar empresa
+          </Button>
+        </View>
       </VStack>
     </Single>
   );

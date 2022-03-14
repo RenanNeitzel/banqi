@@ -8,7 +8,7 @@ import {Company} from '@services/companies';
 export type AppNavigatorParamList = {
   Main: undefined;
   NewCompany: undefined;
-  CompanyDetails: {cnpj: string};
+  CompanyDetails: {company: Company};
   CompanyEdit: {company?: Company};
 };
 
