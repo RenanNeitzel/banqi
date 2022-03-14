@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, HStack, Image} from 'native-base';
+import {Button, Center, HStack, Image} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigatorParamList} from '@navigation/AppNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -38,30 +38,11 @@ export const Home = () => {
           style={styles.image}
         />
       </HStack>
-      <Form>
-        <Form.Section>
-          <CNPJInput<SearchFormValues>
-            control={control}
-            name="cnpj"
-            label="Buscar CNPJ"
-            placeholder="Buscar CNPJ"
-          />
-        </Form.Section>
-        <Form.Section>
-          <Button
-            isLoading={isSubmitting}
-            isDisabled={isSubmitting || !isValid}
-            onPress={onSubmit}>
-            Buscar empresa
-          </Button>
-          <Button
-            mt={3}
-            variant="outline"
-            onPress={() => navigation.navigate('NewCompany')}>
-            Cadastrar nova empresa
-          </Button>
-        </Form.Section>
-      </Form>
+      <Center flex={1}>
+        <Button mt={3} onPress={() => navigation.navigate('NewCompany')}>
+          Cadastrar nova empresa
+        </Button>
+      </Center>
     </Single>
   );
 };
