@@ -1,7 +1,7 @@
 import axiosInstance from '@config/axios';
 
 export interface Company {
-  id: string;
+  id?: string;
   name: string;
   cnpj: string;
   description: string;
@@ -34,8 +34,8 @@ export const postCompany = async (params: Company) => {
 };
 
 export const editCompany = async (params: Company) => {
-  const data = await axiosInstance.put(
-    `/companies/${params.cnpj}/?format=api`,
+  const {data} = await axiosInstance.patch(
+    `/companies/${params.id}/?format=json`,
     params,
   );
   return data;
