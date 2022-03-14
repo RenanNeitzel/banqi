@@ -123,7 +123,7 @@ After request edit company on "Detalhes da empresa" screen, you can change the i
 
 Here, you can find out a little more about the person responsible for the project.
 
-<img width="516" alt="Screen Shot 2022-03-13 at 21 40 58" src="https://user-images.githubusercontent.com/41584304/158087128-37e29ac0-67d8-4d89-b3a7-7baacc25c1e3.png">   <img width="449" alt="Screen Shot 2022-03-13 at 21 41 06" src="https://user-images.githubusercontent.com/41584304/158087134-55b7e783-4055-458b-9a64-0f393de6231c.png">
+<img width="516" alt="Screen Shot 2022-03-13 at 22 14 57" src="https://user-images.githubusercontent.com/41584304/158088894-a2619429-7cab-4162-aa35-750e54dfde85.png">   <img width="449" alt="Screen Shot 2022-03-13 at 22 15 04" src="https://user-images.githubusercontent.com/41584304/158088906-72aee38e-4a14-44d9-b849-fb86ad183dd4.png">
 
 
 
