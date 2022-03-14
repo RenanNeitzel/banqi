@@ -30,7 +30,7 @@ export const getCompany = async (
 };
 
 export const postCompany = async (params: Company) => {
-  const {data} = await axiosInstance.post('/companies/?format=api', params);
+  const {data} = await axiosInstance.post('/companies/?format=json', params);
   return data;
 };
 
