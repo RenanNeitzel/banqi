@@ -7,6 +7,7 @@ import {AppNavigatorParamList} from '@navigation/AppNavigator';
 import {Single} from '@components/templates/Single';
 import {usePostCompany} from '@hooks/companies/queries';
 import {CompanyForm, CompanyFormValues} from '@components/common/CompanyForm';
+import {resolveNetworkError} from '@utils/resolveNetworkError';
 
 type NewCompanyProps = NativeStackNavigationProp<
   AppNavigatorParamList,
@@ -35,7 +36,7 @@ export const NewCompany = () => {
           title: 'Erro',
           status: 'error',
           variant: 'solid',
-          description: error,
+          description: resolveNetworkError(error),
         });
       }
     },
