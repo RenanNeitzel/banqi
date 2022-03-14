@@ -143,6 +143,7 @@ export const CompanyForm = React.memo(
             rules={{
               required: 'Informe o número de endereço da empresa',
             }}
+            keyboardType="numeric"
           />
           <TextInput<CompanyFormValues>
             control={control}
