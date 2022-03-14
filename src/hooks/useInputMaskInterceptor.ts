@@ -13,13 +13,11 @@ export const useInputMaskInterceptor = <
   type,
   field,
   options = {},
-  listener,
 }: {
   initialValue?: string;
   type: TextInputMaskTypeProp;
   field: UseControllerReturn<TFieldValues, TName>['field'];
   options?: TextInputMaskOptionProp;
-  listener?: (text: string) => void;
 }) => {
   const [value, onChange] = useState<string>(field.value ?? '');
 
@@ -30,8 +28,7 @@ export const useInputMaskInterceptor = <
         onChange(text);
         const rawText = MaskService.toRawValue(type, text, options);
         field.onChange(rawText);
-        typeof listener === 'function' && listener(rawText);
       },
     };
-  }, [type, value, options, field, listener]);
+  }, [type, value, options, field]);
 };
