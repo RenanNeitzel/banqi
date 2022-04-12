@@ -40,3 +40,6 @@ export const editCompany = async (params: Company) => {
   );
   return data;
 };
+
+
+// teste
